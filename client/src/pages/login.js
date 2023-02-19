@@ -1,0 +1,52 @@
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { getUser } from '../store/auth-actions';
+import './login.css';
+
+export default function Login() {
+    
+    const dispatch = useDispatch();
+    const [user, setUser] = React.useState({
+        username: '',
+        password: ''
+    });
+
+    function handleChange(event){
+        const {name, value} = event.target;
+
+        setUser((prevstate) => {
+            return {
+                ...prevstate,
+                [name]: value
+            }
+        });
+    }
+
+    function handleLogin(event){
+        event.preventDefault();
+        dispatch(getUser(user));
+    }
+    return (
+        <div className="login-box">
+            <h2>Login</h2>
+            <form>
+                <div className="user-box">
+                    <input onChange={handleChange} name='username' value={user.username} type="text" required="" />
+                    <label>Username</label>
+                </div>
+                <div className="user-box">
+                    <input onChange={handleChange} name='password' value={user.password} type="password" required="" />
+                    <label>Password</label>
+                </div>
+                <button onClick={handleLogin}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                Submit
+                </button><br />
+                <a href="/register" className="link-primary">New User? Click Here To Register</a>
+            </form>
+        </div>
+    );
+}

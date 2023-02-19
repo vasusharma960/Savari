@@ -1,0 +1,13 @@
+.card-body{
+    background-color: #808286;
+}
+
+.card{
+    max-width: 34%;
+    margin-left: 11%;
+    margin-top: 2%;
+}
+
+.book-btn{
+    float: right;
+}

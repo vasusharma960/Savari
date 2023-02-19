@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&display=swap');
+
+.navbar{
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.navbar h1{  
+    color: #4773c4;
+    font-size: 3.6rem;
+}
+
+.navbar p{
+    color: #4773c4;
+    font-weight: bold;
+}
+
+.content{
+    flex-wrap: wrap;
+}
