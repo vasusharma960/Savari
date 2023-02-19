@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getCarData } from '../store/car-actions';
 import { carActions } from '../store/cars-slice';
+import { getCarData } from '../store/car-actions';
 import './filter.css';
 
 export default function Filter() {

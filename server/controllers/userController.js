@@ -20,8 +20,6 @@ exports.registerUser = async (req, res) => {
 
     try {
         const user = await findUser(username);
-        const hashed = await bcrypt.hash(req.body.password, 10);
-        console.log(hashed);
 
         if (user) {
             return res.status(409).send('User already registered');

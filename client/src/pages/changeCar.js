@@ -32,7 +32,6 @@ export default function ChangeCar() {
         dispatch(editCar(carDetails))
     }
 
-
     useEffect(() => {
         setCarDetails(cars.find((car) => car._id === carid));
     }, [setCarDetails])

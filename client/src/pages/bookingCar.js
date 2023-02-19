@@ -28,8 +28,7 @@ export default function BookingCar() {
       const from = Date.parse(dateRange.from);
       const to = Date.parse(value);
 
-      if (to - from > 600000) {
-        console.log(to - from);
+      if (to - from > 3600000) {
         const tot = (carDetails.rent / 60) * ((to - from) / (1000 * 60));
         setTotal((Math.round(tot * 100) / 100).toFixed(2));
       } else {
@@ -51,7 +50,7 @@ export default function BookingCar() {
     const from = Date.parse(dateRange.from);
     const to = Date.parse(dateRange.to);
 
-    if (to <= from) {
+    if (to <= from || to - from <= 3600000) {
       return alert('Please Select Appropriate Dates');
     }
 

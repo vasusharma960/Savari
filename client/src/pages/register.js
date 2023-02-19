@@ -5,13 +5,6 @@ import './login.css';
 
 export default function Register(){
     const dispatch = useDispatch();
-//    let alertStyle;
-//    const style = {
-//        alert: {
-//            border: 'solid',
-//            borderColor: 'red'
-//        }
-//    }
 
     const [user, setUser] = React.useState({
         name: '',
