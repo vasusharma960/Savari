@@ -14,7 +14,7 @@ export const bookCar = (car) => {
             console.log(data);
             window.location.href = '/bookings';
         } catch (err) {
-            alert(`Booking Failed`);
+            alert(`${err.response.data}`);
         }
     }
 }

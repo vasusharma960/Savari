@@ -5,7 +5,7 @@ import './availableCars.css';
 export default function AvailableCars({ car }) {
     return (
         <div className='card'>
-            <img src={car.image} className="card-img-top" alt=""/>
+            <img src={car.image} className="card-img-top" alt={ car.name }/>
             <div className="card-body">
                 <h5 className="card-title">{car.name}</h5>
                 <p className="card-text">Rent {car.rent} per hour</p>

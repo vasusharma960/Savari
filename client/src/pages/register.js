@@ -33,6 +33,21 @@ export default function Register(){
 
     function handleLogin(event){
         event.preventDefault();
+
+        if (!user.name || user.name.length === 0) {
+            alert('Enter Name');
+            return;
+        } else if (!user.username.includes('@')) {
+            alert('Enter Valid Email');
+            return;
+        } else if (!user.password || user.password.length < 4) {
+            alert('Enter Password Of More Than 4 Characters');
+            return;
+        } else if (user.password !== user.cpassword) {
+            alert('Password Do Not Match');
+            return;
+        }
+
         dispatch(newUser(user));
     }
     return (
@@ -55,13 +70,7 @@ export default function Register(){
                     <input onChange={handleChange} name='cpassword' value={user.cpassword} type="password" required="" />
                     <label>Confirm Password</label>
                 </div>
-                <button onClick={handleLogin}>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                Submit
-                </button><br />
+                <button onClick={handleLogin}>Submit</button><br />
                 <a href="/" className="link-primary">Already Registered? Click Here To Login</a>
             </form>
         </div>

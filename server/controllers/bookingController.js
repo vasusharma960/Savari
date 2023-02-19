@@ -3,13 +3,35 @@ const Cars = require('../models/carsModel.js');
 const Car = require('../models/carsModel.js');
 
 exports.bookCar = async (req, res) => {
+    const { car_id } = req.body;
     try {
+        let bookings = await Booking.find({ car_id });
+        
+        if (bookings.length > 0) {
+            const from = Date.parse(req.body.from);
+            const to = Date.parse(req.body.to);
+
+            bookings = bookings.filter((booking) => {
+                const bfrom = Date.parse(booking.from);
+                const bto = Date.parse(booking.to);
+                if ((from < bfrom && from < bto && to > bfrom && to < bto)
+                    || (from > bfrom && from < bto && to > bfrom && to < bto)
+                    || (from > bfrom && from < bto && to > bfrom && to > bto)) {
+                    return booking;
+                }
+            })
+        }
+
+        if (bookings.length > 0) {
+            return res.status(400).send('Slot Already Booked');
+        }
+
         const newBooking = new Booking(req.body);
         await newBooking.save();
 
-        res.status(200).send('Car Booked Successfully');
+        return res.status(200).send("Car Booked Successfully");
     } catch (err) {
-        return res.status(400).json(err);
+        return res.status(400).json("An Error Occurred");
     }
 }
 
@@ -47,5 +69,14 @@ exports.getBooking = async (req, res) => {
         }
     } catch (err) {
         return res.status(400).send("An Error Occurred");
+    }
+}
+
+exports.getAllBookings = async (req, res) => {
+    try {
+        const bookings = await Booking.find();
+        res.status(200).send(bookings);
+    } catch (err) {
+        return res.status(404).send("An Error Occurred");
     }
 }

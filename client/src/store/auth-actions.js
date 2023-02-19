@@ -5,13 +5,13 @@ export const newUser = (user) =>{
     return async (dispatch) => {
         const sendRequest = async () => {
             const res = await axios.post('http://localhost:8080/api/v1/users/register', user);
-            console.log(res);
             return res;
         }
 
         try {
             const data = await sendRequest();
-            console.log(data);
+            alert('User Registered Successfully');
+            window.location.href = '/';
         } catch (err) {
             const code = err.response.status;
             const errData = err.response.data;

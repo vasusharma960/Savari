@@ -18,7 +18,8 @@ export default function BookingCar() {
   const cars = useSelector((state) => state.cars.cars);
   const carDetails = cars.find((car) => car._id === carid);
   const date = new Date();
-  const minTime = `${date.toISOString().slice(0, 10)}T${date.getHours()}:${date.getMinutes()}`;
+  const mins = (date.getMinutes() > 9) ? date.getMinutes() : `0${date.getMinutes()}`; 
+  const minTime = `${date.toISOString().slice(0, 10)}T${date.getHours()}:${mins}`;
 
   function handleChange(event){
     const { name, value } = event.target;
@@ -47,7 +48,17 @@ export default function BookingCar() {
   function handleBook(event){
     event.preventDefault();
     
-    console.log(total);
+    const from = Date.parse(dateRange.from);
+    const to = Date.parse(dateRange.to);
+
+    if (to <= from) {
+      return alert('Please Select Appropriate Dates');
+    }
+
+    if ((to - from) >= 432000000) {
+        return alert("You Cannot Book Car For More Than 5 Days");
+    }
+    
     dispatch(bookCar({
       car_id: carDetails._id,
       user_id: id,

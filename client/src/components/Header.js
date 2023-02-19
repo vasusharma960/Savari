@@ -28,10 +28,10 @@ export default function Header() {
                 <div className='dropdown'>
                     <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{username}</button>
                     <ul className="dropdown-menu">
-                        <li><a className="dropdown-item" href='/home'>Home</a></li>
+                        <Link to='/home' style={{textDecoration: 'none'}}><li><button className="dropdown-item">Home</button></li></Link>
                         <li><a className="dropdown-item" href='/addcar'>Add Your Car</a></li>
                         <Link to='/editcar' style={{textDecoration: 'none'}}><li><button className="dropdown-item" >Edit Your Car</button></li></Link>
-                        <li><a className="dropdown-item" href='/bookings'>My Bookings</a></li>
+                        <Link to='/bookings' style={{textDecoration: 'none'}}><li><button className="dropdown-item">My Bookings</button></li></Link>
                         <li><button className="dropdown-item" onClick={handleLogout}>Logout</button></li>
                     </ul>
                 </div>

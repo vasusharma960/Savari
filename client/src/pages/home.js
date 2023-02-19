@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Filter from '../components/filter';
 import { getCarData } from '../store/car-actions';
 
-export default function Home(){
+export default function Home() {
     const dispatch = useDispatch();
 
     useEffect(() => {

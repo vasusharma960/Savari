@@ -24,6 +24,13 @@ export default function Login() {
 
     function handleLogin(event){
         event.preventDefault();
+
+        if (!user.username || user.username.length === 0 || !user.username.includes('@')) {
+            return alert('Enter Valid Username');
+        } else if (!user.password || user.password.length === 0) {
+            return alert('Enter Password');
+        }
+
         dispatch(getUser(user));
     }
     return (
@@ -38,13 +45,7 @@ export default function Login() {
                     <input onChange={handleChange} name='password' value={user.password} type="password" required="" />
                     <label>Password</label>
                 </div>
-                <button onClick={handleLogin}>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                Submit
-                </button><br />
+                <button onClick={handleLogin}>Submit</button><br />
                 <a href="/register" className="link-primary">New User? Click Here To Register</a>
             </form>
         </div>

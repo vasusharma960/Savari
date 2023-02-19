@@ -16,12 +16,9 @@ export default function EditCar() {
     return (
         <React.Fragment>
             <Header />
-            <div className="content d-flex">
-                {cars.map((car, index) => {
+                {(cars.length > 0) ? cars.map((car, index) => {
                     return <YourCars key={index} car={car}/>
-                })}
-            </div>
-            
+                }) : <h1 style={{color: 'white'}}>You Have Not Added Any Cars For Rent</h1>}
         </React.Fragment>
     );
 }
