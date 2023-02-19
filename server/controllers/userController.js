@@ -1,4 +1,5 @@
 const User = require('../models/usersModel.js');
+const bcrypt = require('bcrypt');
 
 const findUser = async (username) => {
 
@@ -15,15 +16,18 @@ const findUser = async (username) => {
 }
 
 exports.registerUser = async (req, res) => {
-    const { username } = req.body;
+    const { name, username, password } = req.body;
 
     try {
         const user = await findUser(username);
+        const hashed = await bcrypt.hash(req.body.password, 10);
+        console.log(hashed);
 
         if (user) {
             return res.status(409).send('User already registered');
         } else {
-            const newUser = new User(req.body);
+            const hashedPwd = await bcrypt.hash(req.body.password, 10);
+            const newUser = new User({name, username, password: hashedPwd});
             await newUser.save();
             res.status(200).send('New User Registered Successfully');
         }
@@ -34,15 +38,13 @@ exports.registerUser = async (req, res) => {
 
 exports.getUser = async (req, res) => {
     const {username, password} = req.body;
-    //console.log(req.body);
 
     try {
-        //const user = await User.findOne({username, password});
         const user = await findUser(username);
-        console.log(user);
 
         if (user) {
-            if (user.username === username && user.password === password) {
+            const comparePwd = await bcrypt.compare(password, user.password);
+            if (user.username === username && comparePwd) {
                 res.status(200).send({id: user._id, message: "Login Successful"});
             } else {
                 res.status(401).send('Invalid Username or Password');
