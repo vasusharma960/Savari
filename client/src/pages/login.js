@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { getUser } from '../store/auth-actions';
 import './login.css';
@@ -26,9 +27,9 @@ export default function Login() {
         event.preventDefault();
 
         if (!user.username || user.username.length === 0 || !user.username.includes('@')) {
-            return alert('Enter Valid Username');
+            return toast.error('Enter Valid Username');
         } else if (!user.password || user.password.length === 0) {
-            return alert('Enter Password');
+            return toast.error('Enter Password');
         }
 
         dispatch(getUser(user));

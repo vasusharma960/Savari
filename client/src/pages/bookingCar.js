@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../components/Header';
 import RecentSlots from '../components/RecentSlots';
@@ -51,11 +52,11 @@ export default function BookingCar() {
     const to = Date.parse(dateRange.to);
 
     if (to <= from || to - from <= 3600000) {
-      return alert('Please Select Appropriate Dates');
+      return toast.error('Please Select Appropriate Dates');
     }
 
     if ((to - from) >= 432000000) {
-        return alert("You Cannot Book Car For More Than 5 Days");
+        return toast.error("You Cannot Book Car For More Than 5 Days");
     }
     
     dispatch(bookCar({

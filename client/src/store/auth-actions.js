@@ -1,4 +1,5 @@
 import axios from "axios"
+import { toast } from "react-hot-toast";
 import { authActions } from "./auth-slice";
 
 export const newUser = (user) =>{
@@ -10,12 +11,14 @@ export const newUser = (user) =>{
 
         try {
             const data = await sendRequest();
-            alert('User Registered Successfully');
-            window.location.href = '/';
+            toast.success('User Registered Successfully');
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 1500);
         } catch (err) {
             const code = err.response.status;
             const errData = err.response.data;
-            alert(`${code} ${errData}`);
+            toast.error(`${code} ${errData}`);
         }
     }
 }
@@ -37,7 +40,7 @@ export const getUser = (user) => {
         } catch (err) {
             const code = err.response.status;
             const errData = err.response.data;
-            alert(`${code} ${errData}`);
+            toast.error(`${code} ${errData}`);
         }
     }
 }

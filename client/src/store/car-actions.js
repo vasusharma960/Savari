@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 import { carActions } from "./cars-slice";
 
 export const getCarData = () => {
@@ -12,7 +13,7 @@ export const getCarData = () => {
             const carsData = await sendRequest();
             dispatch(carActions.replaceData(carsData));
         }catch(err){
-            alert("Error occured while getting data from DB");
+            toast.error("Error occured while getting data from DB");
         }
     }
 }
@@ -26,11 +27,12 @@ export const addCar = (newCar) => {
 
         try {
             const data = await sendRequest();
-            alert(data);
-
-            window.location.href = '/home';
+            setTimeout(() => {
+                window.location.href = '/home';
+            }, 1500);
+            toast.success(data);
         } catch (err) {
-            alert("An Error Occured");
+            toast.error("An Error Occured");
         }
     }
 }
@@ -44,10 +46,13 @@ export const editCar = (car) => {
 
         try {
             const data = await sendRequest();
-            alert(data);
-            window.location.href = '/home';
+
+            setTimeout(() => {
+                window.location.href = '/home';
+            }, 1500);
+            toast.success(data);
         } catch (err) {
-            alert("An Error Occured");
+            toast.error("An Error Occured");
         }
     }
 }
@@ -61,10 +66,12 @@ export const deleteCar = (car) => {
 
         try {
             const data = await sendRequest();
-            alert(data);
-            window.location.href = '/home';
+            setTimeout(() => {
+                window.location.href = '/home';
+            }, 1500);
+            toast.success(data);
         } catch (err) {
-            alert("An Error Occured");
+            toast.error("An Error Occured");
         }
     }
 }

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { carActions } from '../store/cars-slice';
 import { getCarData } from '../store/car-actions';
 import './filter.css';
+import { toast } from 'react-hot-toast';
 
 export default function Filter() {
     const date = new Date();
@@ -38,11 +39,11 @@ export default function Filter() {
         const to = Date.parse(dateRange.to);
 
         if (!from || !to || (to < from)) {
-            return alert('Select Appropriate Date Time To Filter');
+            return toast.error('Select Appropriate Date Time To Filter');
         }
 
         if ((to - from) >= 432000000) {
-            return alert("You Cannot Book Car For More Than 5 Days");
+            return toast.error("You Cannot Book Car For More Than 5 Days");
         }
 
         //dispatch(getCarData());

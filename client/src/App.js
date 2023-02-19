@@ -1,4 +1,5 @@
-import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import Home from './pages/home';
 import './App.css';
 import Login from './pages/login';
@@ -24,6 +25,7 @@ function App() {
           <Route exact path='/editcar/:carid' element={<ProtectedRoute to={<ChangeCar />} />} />
         </Routes>
       </BrowserRouter>
+      <Toaster />
     </div>
   );
 }

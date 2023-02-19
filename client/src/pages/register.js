@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { newUser } from '../store/auth-actions';
 import './login.css';
@@ -28,16 +29,16 @@ export default function Register(){
         event.preventDefault();
 
         if (!user.name || user.name.length === 0) {
-            alert('Enter Name');
+            toast.error('Enter Name');
             return;
         } else if (!user.username.includes('@')) {
-            alert('Enter Valid Email');
+            toast.error('Enter Valid Email');
             return;
         } else if (!user.password || user.password.length < 4) {
-            alert('Enter Password Of More Than 4 Characters');
+            toast.error('Enter Password Of More Than 4 Characters');
             return;
         } else if (user.password !== user.cpassword) {
-            alert('Password Do Not Match');
+            toast.error('Password Do Not Match');
             return;
         }
 
