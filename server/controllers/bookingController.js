@@ -21,11 +21,14 @@ exports.bookCar = async (req, res) => {
                 const bto = Date.parse(booking.to);
                 if ((from < bfrom && from < bto && to > bfrom && to < bto)
                     || (from > bfrom && from < bto && to > bfrom && to < bto)
-                    || (from > bfrom && from < bto && to > bfrom && to > bto)) {
+                    || (from > bfrom && from < bto && to > bfrom && to > bto)
+                    || (from < bfrom && from < bto && to > bfrom && to > bto)) {
                     return booking;
                 }
             })
         }
+
+        console.log(bookings);
 
         if (bookings.length > 0) {
             return res.status(400).send('Slot Already Booked');
