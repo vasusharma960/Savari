@@ -1,13 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { getUser } from '../store/auth-actions';
 import './login.css';
 
 export default function Login() {
-    
     const dispatch = useDispatch();
-    const [user, setUser] = React.useState({
+    const [user, setUser] = useState({
         username: '',
         password: ''
     });

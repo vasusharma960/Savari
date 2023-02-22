@@ -28,9 +28,7 @@ export default function Header() {
                 <div className='dropdown'>
                     <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{username}</button>
                     <ul className="dropdown-menu">
-                        <Link to='/home' style={{textDecoration: 'none'}}><li><button className="dropdown-item">Home</button></li></Link>
-                        <Link to='/addcar' style={{textDecoration: 'none'}}><li><button className="dropdown-item">Add Your Car</button></li></Link>
-                        <Link to='/editcar' style={{textDecoration: 'none'}}><li><button className="dropdown-item" >Edit Your Car</button></li></Link>
+                        <Link to='/dashboard' style={{textDecoration: 'none'}}><li><button className="dropdown-item">Dashboard</button></li></Link>
                         <Link to='/bookings' style={{textDecoration: 'none'}}><li><button className="dropdown-item">My Bookings</button></li></Link>
                         <li><button className="dropdown-item" onClick={handleLogout}>Logout</button></li>
                     </ul>

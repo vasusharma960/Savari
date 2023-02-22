@@ -3,8 +3,13 @@ const Cars = require('../models/carsModel.js');
 const Car = require('../models/carsModel.js');
 
 exports.bookCar = async (req, res) => {
-    const { car_id } = req.body;
+    const { user_id, car_id } = req.body;
     try {
+        const car = await Cars.findById(car_id );
+        if (car.owner_id === user_id) {
+            return res.status(400).send("You Cannot Book Your Own Car");
+        }
+
         let bookings = await Booking.find({ car_id });
         
         if (bookings.length > 0) {
@@ -50,7 +55,7 @@ exports.getBookings = async (req, res) => {
                 }
             }
         }
-        res.status(200).send(userBookings);
+        return res.status(200).send(userBookings);
     } catch (err) {
         return res.status(404).json(err);
     }

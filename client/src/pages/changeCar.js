@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import { editCar } from "../store/car-actions";
 
 export default function ChangeCar() {
+    const [buttonDisable, setDisable] = useState(false);
     const dispatch = useDispatch();
     const carid = window.location.pathname.substring(9);
     const cars = useSelector((state) => state.cars.cars);
@@ -29,6 +30,7 @@ export default function ChangeCar() {
     function handleAdd(e) {
         e.preventDefault();
 
+        setDisable(true);
         dispatch(editCar(carDetails))
     }
 
@@ -58,7 +60,7 @@ export default function ChangeCar() {
                     <input onChange={handleChange} name='rent' type="number" value={ carDetails.rent} required={true} />
                     <label>Rent per hour</label>
                 </div>
-                <button onClick={handleAdd}>Edit Details</button>
+                <button onClick={handleAdd} disabled={buttonDisable}>Edit Details</button>
             </form>
         </div>
         </React.Fragment>

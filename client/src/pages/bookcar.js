@@ -1,21 +1,20 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, {useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Cars from '../components/cars';
 import Header from '../components/Header';
-import Filter from '../components/filter';
 import { getCarData } from '../store/car-actions';
 
-export default function Home() {
+export default function Bookcar() {
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getCarData());
     },[dispatch]);
+    const cars = useSelector((state) => state.cars.cars);
     return (
         <React.Fragment>
             <Header />
-            <Filter />
-            <Cars />
+            <Cars temp={ cars } />
         </React.Fragment>
     );
 }

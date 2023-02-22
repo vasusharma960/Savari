@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import Home from './pages/home';
+import Bookcar from './pages/bookcar';
 import './App.css';
 import Login from './pages/login';
 import Register from './pages/register';
@@ -9,6 +9,7 @@ import Bookings from './pages/bookings';
 import AddCar from './pages/addCar';
 import EditCar from './pages/editCar';
 import ChangeCar from './pages/changeCar';
+import Dashboard from './pages/dashboard';
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Login />} />
           <Route exact path='/register' element={<Register />} />
-          <Route exact path='/home' element={<ProtectedRoute to={ <Home />} />} />
+          <Route exact path='/dashboard' element={<ProtectedRoute to={ <Dashboard /> } />} />
+          <Route exact path='/bookcar' element={<ProtectedRoute to={ <Bookcar />} />} />
           <Route exact path='/bookcar/:carid' element={<ProtectedRoute to={<BookingCar />} />} />
           <Route exact path='/bookings' element={<ProtectedRoute to={<Bookings />} />} />
           <Route exact path='/addcar' element={<ProtectedRoute to={<AddCar />} />} />

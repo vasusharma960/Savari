@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../components/Header';
@@ -9,6 +9,7 @@ import './bookingCars.css';
 export default function BookingCar() {
   const dispatch = useDispatch();
   const id = useSelector((state) => state.auth.id);
+  const [disabled, setDisabled] = useState(false);
   const [total, setTotal] = useState(0);
   const [dateRange, setDateRange] = React.useState({
     from: '',
@@ -24,41 +25,51 @@ export default function BookingCar() {
 
   function handleChange(event){
     const { name, value } = event.target;
-
-    if (name === 'to' && value) {
-      const from = Date.parse(dateRange.from);
-      const to = Date.parse(value);
-
-      if (to - from > 3600000) {
-        const tot = (carDetails.rent / 60) * ((to - from) / (1000 * 60));
-        setTotal((Math.round(tot * 100) / 100).toFixed(2));
-      } else {
-        setTotal(0);
-      }
-    }
+    setDisabled(false);
 
     setDateRange((prevstate) => {
-        return {
-            ...prevstate,
-            [name]: value
+      return {
+        ...prevstate,
+        [name]: value
         }
-    });
+    });    
   }
+
+
+  useEffect(() => {
+    if ((dateRange.from.length > 0 && dateRange.to.length > 0)) {
+      const from = Date.parse(dateRange.from);
+      const to = Date.parse(dateRange.to);
+
+      if (to - from > 3600000) {
+        console.log(`Calculate ${dateRange.from}  ${dateRange.to}`)
+        let tot = (carDetails.rent / 60) * ((to - from) / (1000 * 60));
+        setTotal((Math.round(tot * 100) / 100).toFixed(2));
+        console.log(`Calculate ${total}`)
+      } else {
+        setDisabled(true);
+        setTotal(0);
+        toast.error('Please Select Appropriate Dates');
+      }
+    }
+  },[dateRange])
 
   function handleBook(event){
     event.preventDefault();
+    if (dateRange.from.length === 0 || dateRange.to.length === 0) {
+      console.log(dateRange)
+      return toast.error('Please Select Appropriate Dates');
+    }
     
     const from = Date.parse(dateRange.from);
     const to = Date.parse(dateRange.to);
 
-    if (to <= from || to - from <= 3600000) {
-      return toast.error('Please Select Appropriate Dates');
-    }
-
     if ((to - from) >= 432000000) {
+      setDisabled(true);
         return toast.error("You Cannot Book Car For More Than 5 Days");
     }
     
+    setDisabled(true);
     dispatch(bookCar({
       car_id: carDetails._id,
       user_id: id,
@@ -83,27 +94,27 @@ export default function BookingCar() {
                   <form>
                     <label className='fromDate'>From:</label>
                     <input
-                      onChange={handleChange}
                       className='date'
                       type="datetime-local"
                       name="from"
                       min={minTime}
                       value={dateRange.from}
+                      onChange={handleChange}
                       />
                   </form>
                   <form className='toDate'>
                     <label>To:</label>
                     <input
-                      onChange={handleChange}
                       className='date'
                       type="datetime-local"
                       name="to"
                       min={minTime}
                       value={dateRange.to}
+                      onChange={handleChange}
                       />
                   </form>
               <h5>Total Cost: { total }</h5>
-              <button onClick={ handleBook } type="button" className="btn btn-outline-dark">Book Now</button>
+              <button onClick={handleBook} type="button" className="btn btn-outline-dark" disabled={ disabled}>Book Now</button>
                 </div>
               </div>
             </div>

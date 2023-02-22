@@ -35,7 +35,7 @@ export const getUser = (user) => {
             
             if (data.status === 200) {
                 dispatch(authActions.login({ id: data.data.id, username: user.username }));
-                window.location.href = '/home';
+                window.location.href = '/dashboard';
             }
         } catch (err) {
             const code = err.response.status;

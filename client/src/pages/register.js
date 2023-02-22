@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { newUser } from '../store/auth-actions';
 import './login.css';
 
-export default function Register(){
+export default function Register() {
+    const [disableButton, setDisable] = useState('false');
     const dispatch = useDispatch();
 
     const [user, setUser] = React.useState({
@@ -42,6 +43,7 @@ export default function Register(){
             return;
         }
 
+        setDisable(true);
         dispatch(newUser(user));
     }
     return (
@@ -64,7 +66,7 @@ export default function Register(){
                     <input onChange={handleChange} name='cpassword' value={user.cpassword} type="password" required="" />
                     <label>Confirm Password</label>
                 </div>
-                <button onClick={handleLogin}>Submit</button><br />
+                <button onClick={handleLogin} disabled={disableButton}>Submit</button><br />
                 <a href="/" className="link-primary">Already Registered? Click Here To Login</a>
             </form>
         </div>

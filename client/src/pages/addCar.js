@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import Header from "../components/Header";
 import { addCar } from "../store/car-actions";
 
 export default function AddCar() {
+    const [buttonDisable, setDisable] = useState(false);
     const dispatch = useDispatch();
     const [newCar, setNewCar] = React.useState({
         name: '',
@@ -27,6 +28,7 @@ export default function AddCar() {
     function handleAdd(e) {
         e.preventDefault();
 
+        setDisable(true);
         dispatch(addCar(newCar));
     }
     return (
@@ -51,7 +53,7 @@ export default function AddCar() {
                     <input onChange={handleChange} name='rent' type="number" required={true} />
                     <label>Rent per hour</label>
                 </div>
-                <button onClick={handleAdd}>Submit</button>
+                <button onClick={handleAdd} disabled={buttonDisable}>Submit</button>
             </form>
         </div>
         </React.Fragment>

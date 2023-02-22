@@ -28,7 +28,7 @@ export const addCar = (newCar) => {
         try {
             const data = await sendRequest();
             setTimeout(() => {
-                window.location.href = '/home';
+                window.location.href = '/editcar';
             }, 1500);
             toast.success(data);
         } catch (err) {
@@ -48,7 +48,7 @@ export const editCar = (car) => {
             const data = await sendRequest();
 
             setTimeout(() => {
-                window.location.href = '/home';
+                window.location.href = '/editcar';
             }, 1500);
             toast.success(data);
         } catch (err) {
@@ -67,7 +67,7 @@ export const deleteCar = (car) => {
         try {
             const data = await sendRequest();
             setTimeout(() => {
-                window.location.href = '/home';
+                window.location.href = '/editcar';
             }, 1500);
             toast.success(data);
         } catch (err) {
