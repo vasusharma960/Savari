@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { getUser } from '../store/auth-actions';
+import { getUser } from '../../store/auth-actions';
 import './login.css';
 
 export default function Login() {

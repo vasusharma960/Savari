@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteCar } from "../store/car-actions";
+import { deleteCar } from "../../store/car-actions";
 
 export default function YourCars({ car }) {
     const dispatch = useDispatch();

@@ -1,15 +1,15 @@
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import Bookcar from './pages/bookcar';
+import Bookcar from './components/Bookcar/bookcar';
 import './App.css';
-import Login from './pages/login';
-import Register from './pages/register';
-import BookingCar from './pages/bookingCar';
-import Bookings from './pages/bookings';
-import AddCar from './pages/addCar';
-import EditCar from './pages/editCar';
-import ChangeCar from './pages/changeCar';
-import Dashboard from './pages/dashboard';
+import Login from './components/Login/login';
+import Register from './components/Register/register';
+import BookingCar from './components/BookingCar/bookingCar';
+import Bookings from './components/Bookings/bookings';
+import AddCar from './components/Edit/addCar';
+import EditCar from './components/Edit/editCar';
+import ChangeCar from './components/Edit/changeCar';
+import Dashboard from './components/Dashboard/dashboard';
 
 function App() {
   return (

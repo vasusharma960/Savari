@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { newUser } from '../store/auth-actions';
-import './login.css';
+import { newUser } from '../../store/auth-actions';
+import '../Login/login.css';
 
 export default function Register() {
     const [disableButton, setDisable] = useState('false');

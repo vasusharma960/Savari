@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "../components/Header";
-import { editCar } from "../store/car-actions";
+import Header from "../Header/Header";
+import { editCar } from "../../store/car-actions";
 
 export default function ChangeCar() {
     const [buttonDisable, setDisable] = useState(false);

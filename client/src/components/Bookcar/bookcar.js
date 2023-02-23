@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Cars from '../components/cars';
-import Header from '../components/Header';
-import { getCarData } from '../store/car-actions';
+import Cars from './cars';
+import Header from '../Header/Header';
+import { getCarData } from '../../store/car-actions';
 
 export default function Bookcar() {
     const dispatch = useDispatch();

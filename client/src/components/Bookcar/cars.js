@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
-import AvailableCars from '../pages/availableCars';
+import AvailableCars from './availableCars';
 import { toast } from 'react-hot-toast';
-import filterCars from './filterCars';
-import './filter.css';
+import filterCars from '../Filter/filterCars';
+import '../Filter/filter.css';
 
 export default function Cars({temp}) {
     

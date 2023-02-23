@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { authActions } from '../store/auth-slice';
-import './default.css';
+import { authActions } from '../../store/auth-slice';
+import './header.css';
 
 export default function Header() {
     const username = useSelector((state) => state.auth.username);

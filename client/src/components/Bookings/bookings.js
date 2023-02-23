@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Header from "../components/Header";
-import MyBookedCar from "../components/MyBookedCar";
+import Header from "../Header/Header";
+import MyBookedCar from "./MyBookedCar";
 
 export default function Bookings() {
     const user_id = sessionStorage.getItem('id');

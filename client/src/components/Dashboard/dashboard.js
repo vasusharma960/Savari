@@ -1,8 +1,8 @@
 import React, { useEffect }from "react";
 import { useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
-import Header from "../components/Header";
-import { getCarData } from '../store/car-actions';
+import Header from "../Header/Header";
+import { getCarData } from '../../store/car-actions';
 
 export default function Dashboard() {
     const dispatch = useDispatch();

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import Header from '../components/Header';
-import RecentSlots from '../components/RecentSlots';
-import { bookCar } from '../store/book-actions';
+import Header from '../Header/Header';
+import RecentSlots from './RecentSlots';
+import { bookCar } from '../../store/book-actions';
 import './bookingCars.css';
 
 export default function BookingCar() {

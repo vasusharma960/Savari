@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Header from '../components/Header';
-import YourCars from '../components/yourCars';
-import { getCarData } from '../store/car-actions';
+import Header from '../Header/Header';
+import YourCars from './yourCars';
+import { getCarData } from '../../store/car-actions';
 
 export default function EditCar() {
     const dispatch = useDispatch();
